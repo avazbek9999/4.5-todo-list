@@ -1,0 +1,127 @@
+
+.container{
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px 0 rgba(3, 3, 3, 0.6), 0 25px 50px 0 rgba(7, 6, 6, 0.1);
+}
+
+.form-inner{
+    padding: 20px 40px;
+    text-align: center;
+    color: #FCF6F5FF;
+    background:linear-gradient(#00467f,#a5cc82); 
+}
+
+.headding{
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.form{
+    display: flex;
+    
+}
+
+.input{
+    width: 75%;
+    margin: 0;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    
+
+}
+
+.form_btn{
+    width: 25%;
+    margin: 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    color: #101820FF;
+    background-color: #C7D3D4FF;
+}
+
+.form_btn:hover{
+    background-color: #A2A2A1FF;
+}
+
+.list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.list__item{
+    display: flex;
+    align-items: center;
+    padding: 12px 40px;
+    font-size: 18px;
+    background-color: #eee;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.list__item:nth-child(2n){
+    background-color: #f9f9f9;
+}
+
+.list__item:hover{
+    background-color: #ddd;
+}
+
+.list__item__input{
+    margin-right: 20px;
+}
+
+.list__item__paragrf{
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: normal;
+    color: rgb(29, 29, 39);
+
+}
+
+/* .checked{
+    background-color: #888;
+    color: #fff;
+    text-decoration: line-through;
+}
+
+*/
+
+.list__item__btn{
+    cursor: pointer;
+    margin-left: auto;
+    padding: 2px 12px;
+    color: #EDFF00FF;
+    background-color: #078282FF;
+    opacity: 0.8;
+}
+
+.list__item__btn:hover{
+    opacity: 1;
+}
+
+.count-wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 40px;
+    border: 2px solid rgb(204, 211, 211);
+}
+
+.count-btn{
+    width: 100%;
+    max-width: 120px;
+    padding: 4px;
+    color: rgb(34, 8, 8);
+    background:linear-gradient(#bbd2c5,#536976); 
+}
+
+.count{
+    color: rgb(206, 27, 0);
+}
