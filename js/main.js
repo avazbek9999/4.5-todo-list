@@ -107,6 +107,8 @@ function renderTodos(arr, node) {
         newLi.appendChild(newDeletBtn);
         node.appendChild(newLi);
     });
+    renderCount(todos);//har render bo'lganda sanab turadi
+
 }
 
 //listen Event
