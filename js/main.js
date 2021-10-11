@@ -12,24 +12,18 @@ let todos = [];
 //event delegation counts
 elCountWrapper.addEventListener('click', (evt) => {
     if (evt.target.matches('.btn-all')) {
-        console.log(evt.target.matches('.btn-all'));
-        renderCount(todos);
         renderTodos(todos, elList);
     }
 
     if (evt.target.matches('.btn-complited')) {
-        console.log(evt.target.matches('.btn-complited'));
         const completedTodo = todos.filter(todo => todo.isCompleted);
         
-        renderCount(todos);
         renderTodos(completedTodo, elList);
     }
 
     if (evt.target.matches('.btn-uncomplited')) {
-        console.log(evt.target.matches('.btn-uncomplited'));
         const unCompletedTodo = todos.filter(todo => !todo.isCompleted);
         
-        renderCount(todos);
         renderTodos(unCompletedTodo, elList);
     }
 })
@@ -57,7 +51,6 @@ elList.addEventListener('click', (evt) => {
 
         todos.splice(foundTodoIndex, 1);//hozir ishlamaydi chunki qayta render qilmadik
 
-        renderCount(todos)
         renderTodos(todos, elList);
     } else if (evt.target.matches('.list__item__input')) {
         const todoId = Number(evt.target.dataset.todoId);
@@ -66,7 +59,6 @@ elList.addEventListener('click', (evt) => {
 
         foundTodo.isCompleted = !foundTodo.isCompleted;
                 
-        renderCount(todos);
         renderTodos(todos, elList);
     }
 })
@@ -80,12 +72,10 @@ function renderTodos(arr, node) {
         const newCheckBox = document.createElement('input');
         const newParagrf = document.createElement('p');
         const newDeletBtn = document.createElement('button');
-
-        
+ 
         newParagrf.textContent = todo.title;
         newDeletBtn.textContent = 'Delete';
         newCheckBox.type = 'checkbox';
-        // elAllCount.textContent = todos.length;
 
         newLi.setAttribute('class', 'list__item');
         newCheckBox.setAttribute('class','list__item__input')
@@ -135,9 +125,7 @@ elForm.addEventListener('submit', function (evt) {
     todos.push(newTodo);
 
     renderTodos(todos, elList);
-
    
 });
 
-renderCount(todos)
 renderTodos(todos, elList);
