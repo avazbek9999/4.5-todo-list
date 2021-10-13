@@ -7,8 +7,14 @@ const elCompletedCount = document.querySelector('.complited-count');
 const elUncompletedCount = document.querySelector('.uncomplited-count');
 const elCountWrapper = document.querySelector('.count-wrapper');
 
-let todos = [];
+const localTodos = JSON.parse(window.localStorage.getItem('todos'));
 
+const todos = localTodos || [];
+
+function updateTodos() {
+    window.localStorage.setItem('todos', JSON.stringify(todos));
+    renderTodos(todos, elList);
+}
 //event delegation counts
 elCountWrapper.addEventListener('click', (evt) => {
     if (evt.target.matches('.btn-all')) {
@@ -16,17 +22,17 @@ elCountWrapper.addEventListener('click', (evt) => {
     }
 
     if (evt.target.matches('.btn-complited')) {
-        const completedTodo = todos.filter(todo => todo.isCompleted);
+        const completedTodo = todos.filter(todo => todo.isCompleted===true);
         
         renderTodos(completedTodo, elList);
     }
 
     if (evt.target.matches('.btn-uncomplited')) {
-        const unCompletedTodo = todos.filter(todo => !todo.isCompleted);
+        const unCompletedTodo = todos.filter(todo => todo.isCompleted===false);
         
         renderTodos(unCompletedTodo, elList);
     }
-})
+});
 
 //render count
 function renderCount(arr) {
@@ -42,7 +48,7 @@ function renderCount(arr) {
     elUncompletedCount.textContent = arr.length - completedCount;
 }
 
-//event delegation delete btn=======================
+//event delegation delete btn and iscompleted=======================
 elList.addEventListener('click', (evt) => {
     if (evt.target.matches('.list__item__btn')) {
         const todoId = Number(evt.target.dataset.todoId);
@@ -51,15 +57,15 @@ elList.addEventListener('click', (evt) => {
 
         todos.splice(foundTodoIndex, 1);//hozir ishlamaydi chunki qayta render qilmadik
 
-        renderTodos(todos, elList);
+        updateTodos()
     } else if (evt.target.matches('.list__item__input')) {
         const todoId = Number(evt.target.dataset.todoId);
 
         const foundTodo = todos.find(todo => todo.id === todoId);
 
         foundTodo.isCompleted = !foundTodo.isCompleted;
-                
-        renderTodos(todos, elList);
+
+        updateTodos()
     }
 })
 
@@ -98,7 +104,6 @@ function renderTodos(arr, node) {
         node.appendChild(newLi);
     });
     renderCount(todos);//har render bo'lganda sanab turadi
-
 }
 
 //listen Event
@@ -108,10 +113,9 @@ elForm.addEventListener('submit', function (evt) {
     const UserInput = elInput.value.trim();
     elInput.value = null;
 
-
     //early return 
     if (UserInput <= 0 ) {
-        elInput.style.border = '2px solid yellow'
+        elInput.style.border = '2px solid red'
         return;
     } else {
         elInput.style.border = '2px solid green'   
@@ -123,9 +127,8 @@ elForm.addEventListener('submit', function (evt) {
         isCompleted: false
     }
     todos.push(newTodo);
-
-    renderTodos(todos, elList);
-   
+    
+    updateTodos()
 });
 
 renderTodos(todos, elList);
